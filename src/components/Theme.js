@@ -12,6 +12,15 @@ const myTheme = createTheme({
       default: '#939599',
       dark: '#898A8D',
     }
+  },
+  typography: {
+    fontFamily: [
+      '"Segoe UI"',
+      'Arial',
+      'sans-serif',
+    ].join(','),
+    fontSize: 30,
+    color:'#F7E10E',
   }
 });
 
