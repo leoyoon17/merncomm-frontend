@@ -4,25 +4,7 @@ import myTheme from './Theme';
 
 import Fade from '@material-ui/core/Fade';
 import Card from '@material-ui/core/Card';
-// const Overlay = memo(({ handleMouseOver, handleMouseOut }) => {
 
-//   return (
-//     <Card square onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>
-//       TEST
-//     </Card>
-//   )
-// });
-
-
-// const StyledItemCardOverlay = withStyles({
-//   root: {
-//     textAlign: 'center',
-//     height: '280px',
-//     backgroundColor: 'purple',
-
-//     zIndex: 1,
-//   }
-// })(Overlay);
 
 const classes = (myTheme) => ({
   root: {

@@ -7,24 +7,55 @@ import { Container, Navbar, Nav } from 'react-bootstrap';
 import MainCarousel from './components/MainCarousel';
 import ItemCards from './components/ItemCards';
 import Footer from './components/Footer';
+import SignUp from './components/SignUp';
+import SignIn from './components/SignIn';
 
 export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       apiResponse: "",
-      test: "this is a test",
+      componentName: "",
+      displaySignUp: false,
+      displaySignIn: false,
+      displayCart: false,
+
+      
     };
+
+    this.displayComponent = this.displayComponent.bind(this);
+  }
+
+  displayComponent(componentName) {
+    console.log(componentName);
+    switch (componentName) {
+      case "SignUp":
+        this.setState({
+          displaySignUp: true,
+        });
+        break;
+      case "SignIn":
+        // TODO
+        this.setState({
+          displaySignIn: !this.state.displaySignIn,
+        });
+        break;
+      case "Cart":
+        // TODO
+        this.setState({
+          displayCart: !this.state.displayCart,
+        });
+        break;
+      default:
+        break;
+    }    
+  }
+
+  handleChildClick(childData, event) {
+    alert("The Child Component is: " + event.target);
   }
 
   async callAPI() {
-    // fetch("http://localhost:8080/catalog/test")
-    //   .then(res => res.json())
-    //   .then(res => console.log(res))
-    //   .then(res => this.setState({apiResponse: res.message}))
-    //   .then(console.log(this.state.apiResponse.message))
-    //   .catch(err => err);
-
     let response = await fetch("http://localhost:8080/catalog/test");
     
     if (!response.ok) {
@@ -37,8 +68,6 @@ export default class App extends Component {
     }));
     console.log(`The message is ${this.state.apiResponse}`);
   }
-
-
 
   async callGetProducts() {
     let response = await fetch("http://localhost:8080/catalog/products");
@@ -64,6 +93,8 @@ export default class App extends Component {
 
 
   render() {
+    const { displaySignUp, displaySignIn, displayCart } = this.state;
+
     return (
         <>
           <style type="text/css">
@@ -111,17 +142,18 @@ export default class App extends Component {
               <Navbar.Toggle aria-controls="basic-navbar-nav" />
               <Navbar.Collapse className="justify-content-end">
                 <Nav className="justify-content-end">
-                  <Nav.Link href="">SIGN UP</Nav.Link>
-                  <Nav.Link href="">CART</Nav.Link>
+                  <Nav.Link href=""><SignUp /></Nav.Link>
+                  <Nav.Link href=""><SignIn /></Nav.Link>
                 </Nav>
               </Navbar.Collapse>
               
             </Container>
           </Navbar>
 
-          <MainCarousel />
-          <ItemCards />
-          <Footer />
+          
+            <MainCarousel />
+            <ItemCards />
+            <Footer />
         </>
     );
   }
